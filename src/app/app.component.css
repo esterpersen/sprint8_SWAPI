@@ -1,0 +1,67 @@
+* {
+  text-align: center;
+  font-family: "Sono-Light";
+}
+
+.stars {
+  background: url(http://www.script-tutorials.com/demos/360/images/stars.png)
+    top center #000;
+}
+
+.stars,
+.twinkling {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars,
+.tooltip__background,
+.twinkling {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+*,
+:after,
+:before {
+  box-sizing: inherit;
+}
+
+.twinkling {
+  background: url(http://www.script-tutorials.com/demos/360/images/twinkling.png) top center;
+  animation-name: move-twink-back;
+  animation: move-twink-back 200s linear infinite;
+}
+
+@keyframes move-twink-back {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -10000px 5000px;
+  }
+}
+
+@font-face {
+  font-family: "Sono-ExtraLight";
+  src: local("Sono-ExtraLight"),
+    url(/assets/fonts/Sono-ExtraLight) format("truetype");
+}
+@font-face {
+  font-family: "Sono-Light";
+  src: local("Sono-Light"), url(/assets/fonts/Sono-Light) format("truetype");
+}
+@font-face {
+  font-family: "Sono-Regular";
+  src: local("Sono-Regular"), url(/assets/fonts/Sono-Regular) format("truetype");
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}

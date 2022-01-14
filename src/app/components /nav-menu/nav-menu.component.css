@@ -1,0 +1,20 @@
+a {
+  color: gray;
+  font-size: 1.5rem;
+  font-family: "Sono-ExtraLight";
+  text-transform: uppercase;
+}
+
+a:hover {
+  color: #fefefe;
+}
+
+.navbar {
+  margin: 0%;
+  padding: 0%;
+  margin-bottom: 10px;
+}
+
+li:hover {
+  border-bottom: 2px ridge rgba(0, 132, 255, 0.8);
+}

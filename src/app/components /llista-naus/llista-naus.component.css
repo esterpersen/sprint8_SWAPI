@@ -1,0 +1,33 @@
+* {
+  text-align: center;
+  font-family: "Sono-Light";
+}
+
+button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 3;
+  cursor: pointer;
+  color: black;
+  background-color: #ffee58;
+}
+
+button:hover {
+  color: #ffee58;
+}
+
+h2 {
+  font-family: "Sono-Light";
+  color: whitesmoke;
+  font-weight: lighter;
+}
+
+p {
+  color: gray;
+}
+
+.itemLlistaNau {
+  text-transform: uppercase;
+  background: rgb(245, 245, 245, 0.1);
+}
