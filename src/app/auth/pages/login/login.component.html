@@ -1,0 +1,44 @@
+<div class="div-modal" id="loginModal">
+
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Entra</h4>
+		<button type="button" class="btn-close btn-close-white" aria-label="Close"
+			(click)="activeModal.dismiss('Cross click')">
+		</button>
+	</div>
+
+	<div class="modal-body">
+		<form [formGroup]="loginForm">
+			<div class="mb-3">
+				<label class="form-label" for="loginEmail">Email</label>
+				<input type="text" class="form-control" id="loginEmail" name="loginEmail" placeholder=""
+					formControlName="loginEmail" />
+				<div *ngIf="loginForm.controls['loginEmail'].invalid && (loginForm.controls['loginEmail'].dirty || loginForm.controls['loginEmail'].touched)"
+					class="alert alert-danger">
+					<div *ngIf="loginForm.controls['loginEmail'].errors?.['required']">És obligatori.</div>
+					<div *ngIf="loginForm.controls['loginEmail'].errors?.['email']">Insereix un email vàlid.</div>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="loginPassw">Contrasenya</label>
+				<input type="password" class="form-control" id="loginPassw" name="loginPassw" placeholder=""
+					formControlName="loginPassw" />
+				<div *ngIf="loginForm.controls['loginPassw'].invalid && (loginForm.controls['loginPassw'].dirty || loginForm.controls['loginPassw'].touched)"
+					class="alert alert-danger">
+					<div *ngIf="loginForm.controls['loginPassw'].errors?.['required']">És obligatori.</div>
+					<div *ngIf="loginForm.controls['loginPassw'].errors?.['pattern']">Insereix com a mínim 8
+						caràcters, 1 majúscula, 1 minúscula, i 1 número.</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="modal-footer justify-content-between">
+		<!-- //* D'aquí s'obra l'altre modal -->
+		<p>No tens un compte? <a href="#" data-bs-dismiss="modal" (click)="activeModal.dismiss('canvi de modal')" routerLink="/auth/regModal">Registra't</a>
+		</p>
+		<button type="submit" class="btn btn-warning actionBtn"
+			(click)="login(); activeModal.dismiss('Save click'); reset(loginForm)" [disabled]="!loginForm.valid">Entrar
+		</button>
+	</div>
+</div>

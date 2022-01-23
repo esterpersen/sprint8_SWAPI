@@ -1,0 +1,41 @@
+h2 {
+  color: #ffc108;
+  font-weight: lighter;
+  font-family: "Sono-Light";
+  text-transform: uppercase;
+  text-align: start;
+  padding: 10px;
+}
+
+.titol {
+  color: whitesmoke;
+  font-family: "Sono-light";
+  list-style-type: none;
+  margin-left: 20px;
+}
+
+ul {
+  display: flex;
+  padding-left: 0;
+  margin-bottom: 2px;
+}
+
+p,
+li {
+  color: grey;
+  font-family: "Sono-Regular";
+  list-style-type: none;
+}
+
+li {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.imgNau {
+  border-bottom: 2px ridge rgb(255, 0, 0, 0.8);
+}
+
+img {
+  padding-bottom: 1px;
+}
