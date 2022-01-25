@@ -103,7 +103,7 @@ export class AutenticacioService implements OnInit {
         // Si es confirma que l'email entrat és nou i no està registrat, es registra l'usuari
         this.guardarUsuariRegistrat = newUsuari;
         this.guardarNouUsuari_localStorage(this.usuariRegistrat);
-        alert("Usuari registrat. Si us plau fes login per desbloquejar la llista de naus.");
+        console.log("Registre OK. Si us plau fes login per desbloquejar la llista de naus.");
       }
     });
   }
@@ -115,23 +115,23 @@ export class AutenticacioService implements OnInit {
 
       case "loginForm":
         if (emailEscrit === emailUsuariRegistrat) {
-          alert("Login OK.");
+          console.log("Login OK.");
           this.guardarLogin_localStorage(emailEscrit);
           return of(true);
         } else if (emailEscrit === emailUsuariDeProva) {
-          alert("Aquest és l'usuari de prova. Si us plau crea el teu propi usuari.");
+          console.log("Aquest és l'usuari de prova. Si us plau crea el teu propi usuari.");
           return of(true);
         } else {
-          alert("Aquest usuari no està registrat. Si us plau, crea un usuari.");
+          console.log("Aquest usuari no està registrat. Si us plau, crea un usuari.");
           return of(false);
         }
 
       case "registreForm":
         if (emailEscrit === emailUsuariRegistrat) {
-          alert("Aquest usuari ja existeix. Si us plau fes login amb el teu usuari.");
+          console.log("Aquest usuari ja existeix. Si us plau fes login amb el teu usuari.");
           return of(false);
         } else if (emailEscrit === emailUsuariDeProva) {
-          alert("Aquest és l'usuari de prova. Registra't amb un altre mail.");
+          console.log("Aquest és l'usuari de prova. Registra't amb un altre mail.");
           return of(false);
         } else {
           this.guardarLogin_localStorage(emailEscrit);
