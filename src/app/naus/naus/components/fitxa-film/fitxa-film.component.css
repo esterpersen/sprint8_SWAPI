@@ -1,0 +1,33 @@
+.card {
+  margin-bottom: 10px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: lightgray;
+  border: 1px solid #ffc108;
+  font-family: "Sono-Regular";
+}
+
+h5 {
+  color: #ffc108;
+  font-weight: lighter;
+  font-family: "Sono-Light";
+  text-transform: uppercase;
+  text-align: start;
+  padding: 10px;
+}
+.card-body {
+  padding: 2px;
+  margin: none;
+}
+
+ul {
+  display: flex;
+}
+
+p {
+  color: grey;
+}
+
+.titol {
+  color: whitesmoke;
+  font-family: "Sono-light";
+}

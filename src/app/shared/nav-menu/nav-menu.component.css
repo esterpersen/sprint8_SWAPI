@@ -15,6 +15,9 @@ a:hover {
   margin-bottom: 10px;
 }
 
+li{
+  border-bottom: 2px solid transparent;
+}
 li:hover {
   border-bottom: 2px ridge rgba(0, 132, 255, 0.8);
 }

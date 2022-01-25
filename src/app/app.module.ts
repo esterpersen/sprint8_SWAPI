@@ -10,13 +10,17 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HeaderComponent } from './shared/header/header.component';
-import { HomeComponent } from './naus/home/home.component';
-import { FitxaNauComponent } from './naus/naus/components/fitxa-nau/fitxa-nau.component';
-import { LlistaNausComponent } from './naus/naus/components/llista-naus/llista-naus.component';
 import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
+import { HomeComponent } from './naus/home/home.component';
+
+import { LlistaNausComponent } from './naus/naus/components/llista-naus/llista-naus.component';
+import { FitxaNauComponent } from './naus/naus/components/fitxa-nau/fitxa-nau.component';
 import { FitxaPilotComponent } from './naus/naus/components/fitxa-pilot/fitxa-pilot.component';
-import { SplitArrayPipe } from './naus/naus/pipes/split-array.pipe';
+import { FitxaFilmComponent } from './naus/naus/components/fitxa-film/fitxa-film.component';
+
 import { NausService } from './naus/naus/services/naus.service';
+
+import { LoginRegLogOutComponent } from './auth/pages/login-reg-logout/login-reg-logout.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,8 @@ import { NausService } from './naus/naus/services/naus.service';
     NavMenuComponent,
     HeaderComponent,
     FitxaPilotComponent,
-    SplitArrayPipe
+    LoginRegLogOutComponent, 
+    FitxaFilmComponent
   ],
   imports: [
     BrowserModule,

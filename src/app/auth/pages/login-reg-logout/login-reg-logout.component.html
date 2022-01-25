@@ -1,0 +1,137 @@
+<!-- BOTONS LOGIN & REGISTRE -->
+<div *ngIf="!loggedInUserName" class="btn-group !spacing" role="group" aria-label="sessionButtons">
+	<button class="btn btn-primary obrirModal" data-bs-toggle="modal" href="#loginModal" role="button">login </button>
+	<button class="btn btn-primary obrirModal" data-bs-toggle="modal" href="#registreModal" role="button">registration
+	</button>
+</div>
+<!-- NOM USUARI & LOGOUT -->
+<div id="logOut" *ngIf="loggedInUserName">
+	<p style="color: antiquewhite;">Hola {{loggedInUserName}} {{loggedInUserSurname}}</p>
+	<button type="button" class="btn btn-light logout" (click)=logout() [routerLink]="['/home']" routerLinkActive="router-link-active">logout</button>
+</div>
+
+<!-- LOGIN FORM -->
+<div class="modal fade" id="loginModal" aria-hidden="true" aria-labelledby="loginModal" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="modal-basic-title">Entra</h4>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form [formGroup]="loginForm">
+					<div class="mb-3">
+						<label class="form-label" for="loginEmail">Email</label>
+						<input type="text" class="form-control" id="loginEmail" name="loginEmail" placeholder=""
+							formControlName="loginEmail" />
+						<div *ngIf="loginForm.controls['loginEmail'].invalid && (loginForm.controls['loginEmail'].dirty || loginForm.controls['loginEmail'].touched)"
+							class="alert alert-danger">
+							<div *ngIf="loginForm.controls['loginEmail'].errors?.['required']">És obligatori.</div>
+							<div *ngIf="loginForm.controls['loginEmail'].errors?.['email']">Insereix un email vàlid.
+							</div>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="loginPassw">Contrasenya</label>
+						<input type="password" class="form-control" id="loginPassw" name="loginPassw" placeholder=""
+							formControlName="loginPassw" />
+						<div *ngIf="loginForm.controls['loginPassw'].invalid && (loginForm.controls['loginPassw'].dirty || loginForm.controls['loginPassw'].touched)"
+							class="alert alert-danger">
+							<div *ngIf="loginForm.controls['loginPassw'].errors?.['required']">És obligatori.</div>
+							<div *ngIf="loginForm.controls['loginPassw'].errors?.['pattern']">Insereix com a mínim 8
+								caràcters, 1 majúscula, 1 minúscula, i 1 número.</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer justify-content-between">
+				<!-- //* D'aquí s'obra l'altre modal -->
+				<p>No tens un compte? <a href="#" data-bs-target="#registreModal" data-bs-toggle="modal"
+						data-bs-dismiss="modal">Registra't</a>
+				</p>
+				<button type="submit" class="btn btn-warning actionBtn" data-bs-dismiss="modal"
+					(click)="login(); reset(loginForm);" [disabled]="!loginForm.valid">Entrar
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- REGISTRATION FORM -->
+<div class="modal fade" id="registreModal" aria-hidden="true" aria-labelledby="registreModal" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="modal-basic-title">Registra't</h4>
+				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form [formGroup]="registreForm">
+					<div class="mb-3">
+						<label class="form-label" for="registreNom">Nom</label>
+						<input type="text" class="form-control" id="registreNom" placeholder="Mínim 2 caràcters"
+							formControlName="registreNom" required />
+						<div *ngIf="registreForm.controls['registreNom'].invalid && (registreForm.controls['registreNom'].dirty || registreForm.controls['registreNom'].touched)"
+							class="alert alert-danger">
+							<div *ngIf="registreForm.controls['registreNom'].errors?.['required']">És obligatori.</div>
+							<div *ngIf="registreForm.controls['registreNom'].errors?.['minlength']">Insereix un nom
+								vàlid (mínim
+								2 caràcters).</div>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="registreCognom">Cognom</label>
+						<input type="text" class="form-control" id="registreCognom" name="registreCognom"
+							placeholder="Mínim 2 caràcters" formControlName="registreCognom" required />
+						<div *ngIf="registreForm.controls['registreCognom'].invalid && (registreForm.controls['registreCognom'].dirty || registreForm.controls['registreCognom'].touched)"
+							class="alert alert-danger">
+							<div *ngIf="registreForm.controls['registreCognom'].errors?.['required']">És obligatori.
+							</div>
+							<div *ngIf="registreForm.controls['registreCognom'].errors?.['minlength']">Insereix un
+								cognom vàlid
+								(mínim 2 caràcters).</div>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="registreEmail">Email</label>
+						<input type="email" class="form-control" id="registreEmail" name="registreEmail" placeholder=""
+							formControlName="registreEmail" />
+						<div *ngIf="registreForm.controls['registreEmail'].invalid && (registreForm.controls['registreEmail'].dirty || registreForm.controls['registreEmail'].touched)"
+							class="alert alert-danger">
+							<div *ngIf="registreForm.controls['registreEmail'].errors?.['required']">És obligatori.
+							</div>
+							<div *ngIf="registreForm.controls['registreEmail'].errors?.['email']">Insereix un email
+								vàlid.
+							</div>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label class="form-label" for="registrePassw">Contrasenya</label>
+						<input type="password" class="form-control" id="registrePassw" name="password"
+							placeholder="Mínim 8 caràcters, 1 majúscula, 1 minúscula, i 1 número"
+							formControlName="registrePassw" />
+
+						<div *ngIf="registreForm.controls['registrePassw'].invalid && (registreForm.controls['registrePassw'].dirty || registreForm.controls['registrePassw'].touched)"
+							class="alert alert-danger">
+							<div *ngIf="registreForm.controls['registrePassw'].errors?.['required']">És obligatori.
+							</div>
+							<div *ngIf="registreForm.controls['registrePassw'].errors?.['pattern']">Insereix com a mínim
+								8
+								caràcters, 1 majúscula, 1 minúscula, i 1 número. </div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer justify-content-between">
+				<p class="mr-auto">Ja tens un compte?
+					<a href="#" data-bs-target="#loginModal" data-bs-toggle="modal" data-bs-dismiss="modal">Entra-hi</a>
+				</p>
+				<button type="submit" class="btn btn-warning actionBtn" (click)="registre(); reset(registreForm)"
+					data-bs-dismiss="modal" [disabled]="!registreForm.valid">Registrar-se
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

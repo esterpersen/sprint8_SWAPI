@@ -1,5 +1,9 @@
-.div-modal {
-  background-color: rgba(0, 0, 0, 0.9);
+* {
+  font-family: "Sono-Light";
+}
+
+.modal-content {
+  background-color: rgba(0, 0, 0, 0.68);
   color: lightgray;
   border: none;
 }
@@ -47,8 +51,30 @@ a:hover {
   font-weight: 300;
   padding: 1px;
   margin-bottom: 2px;
+  font-size: 14px;
 }
 
 .alert-danger {
   padding: 5px;
+}
+
+.obrirModal, .logout{
+  background-color: transparent;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: transparent;
+  border-bottom: 2px solid transparent;
+  color: lightgray;
+  font-family: "Sono-ExtraLight";
+  font-size: 19px;
+}
+
+.obrirModal:hover, .logout:hover {
+  background-color: transparent;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: transparent;
+  border-bottom: 2px ridge rgba(0, 132, 255, 0.8);
+  background-color: transparent;
+  color: lightgray;
 }

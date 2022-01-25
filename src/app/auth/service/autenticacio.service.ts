@@ -22,15 +22,28 @@ export class AutenticacioService implements OnInit {
     passw: "3lB1nquer"
   };
 
+  //* USUARI REGISTRAT
+  private _usuariRegistrat: Usuari = {
+    nom: "",
+    cognom: "",
+    email: "",
+    passw: ""
+  };
+
   //* GETTERS 
   get usuariDeMostra(): Usuari {
     return this._usuariDeProva;
   }
-
   get emailUsuariDeProva(): string {
     return this.obtenir_localStorageDeProva().email;
   }
 
+  get usuariRegistrat(): Usuari {
+    return this._usuariRegistrat;
+  }
+  set guardarUsuariRegistrat(user: Usuari) {
+    this._usuariRegistrat = user;
+  }
   get emailUsuariRegistrat() {
     return JSON.parse(localStorage.getItem("Nou Usuari")!)?.email;
   }
@@ -39,14 +52,13 @@ export class AutenticacioService implements OnInit {
     //* GUARDAR USUARI DE PROVA AL LOCAL STORAGE
     localStorage.setItem("usuari de mostra", JSON.stringify(this.usuariDeMostra));
 
-    //* AGAFAR USUARI DE PROVA
-    setTimeout(() => {
-      console.log("Usuari de prova: ", this.obtenir_localStorageDeProva());
-    }, 1000);
+    // //* AGAFAR USUARI DE PROVA
+    // console.log("Usuari de prova: ", this.obtenir_localStorageDeProva());
+    this.guardarUsuariRegistrat = this.obtenirNouUsuari_localStorage();
   }
 
   //* MÈTODES LOCAL STORAGE
-  private obtenir_localStorageDeProva(): Usuari {
+  public obtenir_localStorageDeProva(): Usuari {
     let usuariDeMostra = JSON.parse(localStorage.getItem("usuari de mostra")!);
     return usuariDeMostra;
   }
@@ -54,69 +66,75 @@ export class AutenticacioService implements OnInit {
   guardarNouUsuari_localStorage(user: Usuari): void {
     localStorage.setItem("Nou Usuari", JSON.stringify(user));
   }
-
-  private obtenirNouUsuari_localStorage(): Usuari {
+  public obtenirNouUsuari_localStorage(): Usuari {
     return JSON.parse(localStorage.getItem("Nou Usuari")!);
   }
 
   guardarLogin_localStorage(emailUser: string) {
     localStorage.setItem("Usuari logged in", JSON.stringify(emailUser));
   }
-
-  private obtenirLogin_localStorage(): Observable<boolean> {
+  public obtenirLogin_localStorage(): Observable<boolean> {
     return JSON.parse(localStorage.getItem("Usuari logged in")!);
   }
 
+  public esborrarCurrentSession_localStorage() {
+    localStorage.removeItem("Usuari logged in");
+    localStorage.removeItem("Nou Usuari");
+    localStorage.removeItem("Última Nau Vista");
+  }
+
   //* MÈTODE LOGIN
-  login(emailEntrat: string): Observable<boolean> {
-    return this.compararEmails("loginForm", emailEntrat, this.emailUsuariDeProva, this.emailUsuariRegistrat);
+  loginNOU(emailEntrat: string): Observable<Usuari> {
+    this.compararEmails("loginForm", emailEntrat, this.emailUsuariDeProva, this.emailUsuariRegistrat).subscribe(resp => {
+      if (resp = true) {
+        this.guardarUsuariRegistrat = this.obtenirNouUsuari_localStorage();
+        return of(this.usuariRegistrat);
+      }
+      return of(this.usuariDeMostra);
+    });
+    //si no ha trobat un usuari registrat, entrem amb el registrat que està en blanc
+    return of(this.usuariRegistrat);
   }
 
   //* MÈTODE REGISTRE
   registre(newUsuari: Usuari) {
-    // console.log("emailEntrat: ", newUsuari.email, " - emailUsuariRegistrat: ", this.emailUsuariRegistrat, " - emailUsuariDeProva: ", this.emailUsuariDeProva);
-
     this.compararEmails("registreForm", newUsuari.email, this.emailUsuariDeProva, this.emailUsuariRegistrat).subscribe(resp => {
       if (resp == true) {
-        this.guardarNouUsuari_localStorage(newUsuari);
-        console.log("Usuari registrat OK: ", this.obtenirNouUsuari_localStorage());
-      } else {
-        console.log("No s'ha guardat l'usuari. Últim usuari creat: ", this.obtenirNouUsuari_localStorage());
+        // Si es confirma que l'email entrat és nou i no està registrat, es registra l'usuari
+        this.guardarUsuariRegistrat = newUsuari;
+        this.guardarNouUsuari_localStorage(this.usuariRegistrat);
+        alert("Usuari registrat. Si us plau fes login per desbloquejar la llista de naus.");
       }
     });
   }
 
   //* MÈTODE COMÚ PER TROBAR EMAILS REGISTRATS I COMPARAR-LOS AMB L'EMAIL ENTRAT
-  compararEmails(deQuinForm: string, primerEmail: string, segonEmail: string, tercerEmail?: string): Observable<boolean> {
+  compararEmails(deQuinForm: string, emailEscrit: string, emailUsuariDeProva: string, emailUsuariRegistrat?: string): Observable<boolean> {
 
     switch (deQuinForm) {
 
       case "loginForm":
-        if (primerEmail === tercerEmail) {
-          console.log("Aquest usuari ja existeix. Login OK.");
-          this.guardarLogin_localStorage(primerEmail);
+        if (emailEscrit === emailUsuariRegistrat) {
+          alert("Login OK.");
+          this.guardarLogin_localStorage(emailEscrit);
           return of(true);
-        } else if (primerEmail === segonEmail) {
-          console.log("Aquest és l'usuari de prova. Login OK.");
-          this.guardarLogin_localStorage(segonEmail);
+        } else if (emailEscrit === emailUsuariDeProva) {
+          alert("Aquest és l'usuari de prova. Si us plau crea el teu propi usuari.");
           return of(true);
         } else {
-          console.log("Aquest usuari no està registrat. Si us plau, crea un usuari.");
-          this.router.navigate(['./auth/regModal']);
+          alert("Aquest usuari no està registrat. Si us plau, crea un usuari.");
           return of(false);
         }
 
       case "registreForm":
-        if (primerEmail === tercerEmail) {
-          console.log("Aquest usuari ja existeix. Si us plau entra amb el teu usuari.");
-          this.router.navigate(['./auth/logModal']);
+        if (emailEscrit === emailUsuariRegistrat) {
+          alert("Aquest usuari ja existeix. Si us plau fes login amb el teu usuari.");
           return of(false);
-        } else if (primerEmail === segonEmail) {
-          console.log("Aquest és l'usuari de prova. Registra't amb un altre mail.");
+        } else if (emailEscrit === emailUsuariDeProva) {
+          alert("Aquest és l'usuari de prova. Registra't amb un altre mail.");
           return of(false);
         } else {
-          this.guardarLogin_localStorage(primerEmail);
-          console.log("Aquest usuari no estava registrat. Registre OK. Login OK.");
+          this.guardarLogin_localStorage(emailEscrit);
           return of(true);
         }
 

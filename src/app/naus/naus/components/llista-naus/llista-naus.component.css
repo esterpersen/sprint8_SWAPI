@@ -30,4 +30,5 @@ p {
 .itemLlistaNau {
   text-transform: uppercase;
   background: rgb(245, 245, 245, 0.1);
+  cursor: pointer;
 }

@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  font-family: "Sono-Regular";
+}
+
+@font-face {
+  font-family: "Sono-ExtraLight";
+  src: local("Sono-ExtraLight"), url(assets/fonts/Sono-ExtraLight.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Sono-Light";
+  src: local("Sono-Light"), url(assets/fonts/Sono-Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Sono-Regular";
+  src: local("Sono-Regular"), url(assets/fonts/Sono-Regular.ttf) format("truetype");
+}

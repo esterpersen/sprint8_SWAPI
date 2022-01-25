@@ -20,7 +20,7 @@ export class FitxaPilotComponent implements OnInit {
 
   ngOnInit(): void {
     this.createFitxaPilot();
-    this.getImageOfNPilot();
+    this.getImageOfPilot();
   }
 
   getPilot(link: string): Observable<Pilot> {
@@ -36,7 +36,7 @@ export class FitxaPilotComponent implements OnInit {
     })
   }
 
-  getImageOfNPilot() {
+  getImageOfPilot() {
     this.srcImgPilotIndividual += this.currentPilotNumber + '.jpg';
   }
 }

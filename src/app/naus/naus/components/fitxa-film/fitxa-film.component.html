@@ -1,0 +1,33 @@
+<div class="card mb-3" style="max-width: 100%;">
+	<div class="row no-gutters">
+		<div class="col-md-4">
+			<img src="{{srcImgFilmIndividual}}" class="card-img" alt="...">
+		</div>
+		<div class="col-md-8">
+			<div class="card-body">
+				<h5 class="card-title">{{filmIndividual.title}}</h5>
+				<p class="card-text">
+				<ul>
+					<p class="titol">Episode: </p>
+					<p>{{ filmIndividual.episode_id}}</p>
+				</ul>
+				<ul>
+					<p class="titol">Opening: </p>
+					<p>{{ filmIndividual.opening_crawl}}</p>
+				</ul>
+				<ul>
+					<p class="titol">Director: </p>
+					<p>{{ filmIndividual.director}}</p>
+				</ul>
+				<ul>
+					<p class="titol">Producer: </p>
+					<p>{{ filmIndividual.producer}}</p>
+				</ul>
+				<ul>
+					<p class="titol">Release date: </p>
+					<p>{{ filmIndividual.release_date}}</p>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

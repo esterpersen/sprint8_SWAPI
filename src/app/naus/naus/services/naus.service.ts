@@ -13,6 +13,7 @@ export class NausService {
   private nausUrl: string = 'https://swapi.py4e.com/api/starships';
   private imgsNausUrl: string = 'https://starwars-visualguide.com/assets/img/starships/';
   private imgsPilotsUrl: string = 'https://starwars-visualguide.com/assets/img/characters/';
+  private imgsFilmsUrl: string = 'https://starwars-visualguide.com/assets/img/films/';
   public currentNauId: number = 0;
   public currentNau!: Nau;
   public pageNum: number = 1;
@@ -24,6 +25,10 @@ export class NausService {
 
   public getPilotImgSrc(): string {
     return this.imgsPilotsUrl;
+  }
+
+  public getFilmImgSrc(): string {
+    return this.imgsFilmsUrl;
   }
 
   //* retornar resultats d la pag X del llistat de naus de la SWAPI

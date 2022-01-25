@@ -1,34 +1,4 @@
 .row {
   display: flex;
   align-items: center;
-  font-family: "Sono-ExtraLight";
-}
-
-a {
-  text-decoration: none;
-  color: lightgray;
-}
-
-a:hover {
-  text-decoration: none;
-  color: lightgray;
-}
-
-.obrirModal {
-  background-color: transparent;
-  text-transform: uppercase;
-  border-radius: 0;
-  border: transparent;
-  border-bottom: 2px transparent;
-  color: lightgray;
-}
-
-.obrirModal:hover {
-  background-color: transparent;
-  text-transform: uppercase;
-  border-radius: 0;
-  border: transparent;
-  border-bottom: 2px ridge rgba(0, 132, 255, 0.8);
-  background-color: transparent;
-  color: lightgray;
 }
