@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Nau } from '../../interfaces/nau.interface';
 import { NausService } from '../../services/naus.service';
 
-
 @Component({
   selector: 'app-fitxa-nau',
   templateUrl: './fitxa-nau.component.html',

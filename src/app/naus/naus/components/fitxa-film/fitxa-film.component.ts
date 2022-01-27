@@ -1,8 +1,6 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Film } from '../../interfaces/film.interface';
 import { NausService } from '../../services/naus.service';
-import { Film } from './../../interfaces/film';
 
 @Component({
   selector: 'app-fitxa-film',
@@ -11,30 +9,42 @@ import { Film } from './../../interfaces/film';
 })
 export class FitxaFilmComponent implements OnInit {
 
-  constructor(private http: HttpClient, private nausService: NausService) {  }
+  constructor(private nausService: NausService) { }
 
   @Input() linkFilm!: string;
   public currentFilmNumber!: number;
   public srcImgFilmIndividual: string = this.nausService.getFilmImgSrc();
-  public filmIndividual!: Film;
-
+  public filmIndividual: Film={
+    title: '',
+    episode_id: 0,
+    opening_crawl: '',
+    director: '',
+    producer: '',
+    release_date: "",
+    species: [],
+    starships: [],
+    vehicles: [],
+    characters: [],
+    planets: [],
+    url: '',
+    created: '',
+    edited: ''
+  };
 
   ngOnInit(): void {
-    this.createFitxaFilm();
+    this.getFilm(this.linkFilm);
     this.getImageOfFilm();
   }
 
-  getFilm(link: string): Observable<Film> {
+  getFilm(link: string): Film {
     this.linkFilm = link;
     this.currentFilmNumber = parseInt(this.linkFilm.split("films/").pop()!);
-    const params = new HttpParams().set(':id', this.currentFilmNumber);
-    return this.http.get<Film>(link, { params });
-  }
 
-  createFitxaFilm() {
-    this.getFilm(this.linkFilm).subscribe(resp => {
+    this.nausService.getFilm(this.linkFilm, this.currentFilmNumber).subscribe(resp => {
       this.filmIndividual = resp;
     })
+
+    return this.filmIndividual;
   }
 
   getImageOfFilm() {

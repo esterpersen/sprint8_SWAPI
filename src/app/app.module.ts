@@ -31,8 +31,8 @@ import { LoginRegLogOutComponent } from './auth/pages/login-reg-logout/login-reg
     NavMenuComponent,
     HeaderComponent,
     FitxaPilotComponent,
-    LoginRegLogOutComponent, 
-    FitxaFilmComponent
+    FitxaFilmComponent,
+    LoginRegLogOutComponent
   ],
   imports: [
     BrowserModule,

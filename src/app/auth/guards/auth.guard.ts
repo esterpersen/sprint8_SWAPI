@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     return this.authService.saberSiUsuariHaFetLogIn()?.pipe(
       tap(isAuthenticated => {
         if (!isAuthenticated) {
-          this.router.navigate(['./auth/logModal']);
+          this.router.navigate(['./login']);
         }
       })
     )
@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     return this.authService.saberSiUsuariHaFetLogIn()?.pipe(
       tap(isAuthenticated => {
         if (!isAuthenticated) {
-          this.router.navigate(['./auth/logModal']);
+          this.router.navigate(['./login']);
         }
       })
     )

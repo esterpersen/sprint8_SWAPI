@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpParams, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Pilot } from '../../interfaces/pilot.interface';
 import { NausService } from '../../services/naus.service';
 
@@ -11,29 +9,44 @@ import { NausService } from '../../services/naus.service';
 })
 export class FitxaPilotComponent implements OnInit {
 
-  constructor(private http: HttpClient, private nausService: NausService) {  }
+  constructor(private nausService: NausService) { }
 
   @Input() linkPilot!: string;
   public currentPilotNumber!: number;
   public srcImgPilotIndividual: string = this.nausService.getPilotImgSrc();
-  public pilotIndividual!: Pilot;
+  public pilotIndividual: Pilot = {
+    name: "",
+    birth_year: "",
+    eye_color: "",
+    gender: "",
+    hair_color: "",
+    height: "",
+    mass: "",
+    skin_color: "",
+    homeworld: "",
+    films: [],
+    species: [],
+    starships: [],
+    vehicles: [],
+    url: "",
+    created: "",
+    edited: ""
+  };
 
   ngOnInit(): void {
-    this.createFitxaPilot();
+    this.getPilot(this.linkPilot);
     this.getImageOfPilot();
   }
 
-  getPilot(link: string): Observable<Pilot> {
+  getPilot(link: string): Pilot {
     this.linkPilot = link;
     this.currentPilotNumber = parseInt(this.linkPilot.split("people/").pop()!);
-    const params = new HttpParams().set(':id', this.currentPilotNumber);
-    return this.http.get<Pilot>(link, { params });
-  }
 
-  createFitxaPilot() {
-    this.getPilot(this.linkPilot).subscribe(resp => {
+    this.nausService.getPilot(this.linkPilot, this.currentPilotNumber).subscribe(resp => {
       this.pilotIndividual = resp;
-    })
+    });
+
+    return this.pilotIndividual;
   }
 
   getImageOfPilot() {
