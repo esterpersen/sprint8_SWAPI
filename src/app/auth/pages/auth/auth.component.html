@@ -1,0 +1,12 @@
+<!-- BOTONS LOGIN & REGISTRE -->
+<div *ngIf="!loggedInUserName" class="btn-group !spacing" role="group" aria-label="sessionButtons">
+	<button class="btn btn-primary authBtn" [routerLink]="['auth/login']">login</button>
+	<button class="btn btn-primary authBtn" [routerLink]="['auth/registration']">registration</button>
+</div>
+
+<!-- NOM USUARI & LOGOUT -->
+<div id="logOut" *ngIf="loggedInUserName">
+	<p id="helloUser">May the Force be with you, {{loggedInUserName}} {{loggedInUserSurname}}</p>
+	<button type="button" class="btn btn-light logout" (click)=logout() [routerLink]="['/home']"
+		routerLinkActive="router-link-active">logout</button>
+</div>

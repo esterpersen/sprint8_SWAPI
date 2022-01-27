@@ -53,7 +53,6 @@ export class AutenticacioService implements OnInit {
     localStorage.setItem("usuari de mostra", JSON.stringify(this.usuariDeMostra));
 
     // //* AGAFAR USUARI DE PROVA
-    // console.log("Usuari de prova: ", this.obtenir_localStorageDeProva());
     this.guardarUsuariRegistrat = this.obtenirNouUsuari_localStorage();
   }
 
@@ -79,7 +78,7 @@ export class AutenticacioService implements OnInit {
 
   public esborrarCurrentSession_localStorage() {
     localStorage.removeItem("Usuari logged in");
-    localStorage.removeItem("Nou Usuari");
+    // localStorage.removeItem("Nou Usuari");
     localStorage.removeItem("Última Nau Vista");
   }
 
@@ -103,7 +102,7 @@ export class AutenticacioService implements OnInit {
         // Si es confirma que l'email entrat és nou i no està registrat, es registra l'usuari
         this.guardarUsuariRegistrat = newUsuari;
         this.guardarNouUsuari_localStorage(this.usuariRegistrat);
-        console.log("Registre OK. Si us plau fes login per desbloquejar la llista de naus.");
+        console.log("Registre OK.");
       }
     });
   }
@@ -119,19 +118,22 @@ export class AutenticacioService implements OnInit {
           this.guardarLogin_localStorage(emailEscrit);
           return of(true);
         } else if (emailEscrit === emailUsuariDeProva) {
-          console.log("Aquest és l'usuari de prova. Si us plau crea el teu propi usuari.");
+          alert("Aquest és l'usuari de prova. Si us plau crea el teu propi usuari.");
+          this.router.navigateByUrl('/auth/registration');
           return of(true);
         } else {
-          console.log("Aquest usuari no està registrat. Si us plau, crea un usuari.");
+          alert("Aquest usuari no està registrat. Si us plau, crea un usuari.");
+          this.router.navigateByUrl('/auth/registration');
           return of(false);
         }
 
       case "registreForm":
         if (emailEscrit === emailUsuariRegistrat) {
-          console.log("Aquest usuari ja existeix. Si us plau fes login amb el teu usuari.");
+          alert("Aquest usuari ja existeix. Si us plau fes login amb el teu usuari.");
+          this.router.navigateByUrl('/auth/login');
           return of(false);
         } else if (emailEscrit === emailUsuariDeProva) {
-          console.log("Aquest és l'usuari de prova. Registra't amb un altre mail.");
+          alert("Aquest és l'usuari de prova. Registra't amb un altre mail.");
           return of(false);
         } else {
           this.guardarLogin_localStorage(emailEscrit);

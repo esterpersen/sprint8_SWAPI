@@ -1,4 +1,4 @@
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -20,7 +20,7 @@ import { FitxaFilmComponent } from './naus/naus/components/fitxa-film/fitxa-film
 
 import { NausService } from './naus/naus/services/naus.service';
 
-import { LoginRegLogOutComponent } from './auth/pages/login-reg-logout/login-reg-logout.component';
+import { AuthComponent } from './auth/pages/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -32,14 +32,14 @@ import { LoginRegLogOutComponent } from './auth/pages/login-reg-logout/login-reg
     HeaderComponent,
     FitxaPilotComponent,
     FitxaFilmComponent,
-    LoginRegLogOutComponent
+    AuthComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule, 
-    InfiniteScrollModule, 
-    ReactiveFormsModule, 
+    AppRoutingModule, 
+    HttpClientModule,
+    InfiniteScrollModule,
+    FormsModule, ReactiveFormsModule,
     NgbModule
   ],
   providers: [NausService, NgbActiveModal],

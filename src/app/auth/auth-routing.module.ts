@@ -1,26 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginRegLogOutComponent } from './pages/login-reg-logout/login-reg-logout.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegistrationComponent } from './pages/registration/registration.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      {
-        path: 'access', 
-        component: LoginRegLogOutComponent, outlet: "modal"
-      },
-      // {
-      //   path: 'regModal', 
-      //   component: RegModalComponent
-      // },
-      // {
-      //   path: '**',
-      //   redirectTo: 'login'
-      // }
+      { path: 'login', component: LoginComponent },
+      { path: 'registration', component: RegistrationComponent },
+      { path: '**', redirectTo: 'login' }
     ]
-
-   
   }
 ]
 

@@ -6,23 +6,15 @@ import { Usuari } from '../../interface/usuari.interface';
 import { AutenticacioService } from '../../service/autenticacio.service';
 
 @Component({
-  selector: 'app-login-reg-logout',
-  templateUrl: './login-reg-logout.component.html',
-  styleUrls: ['./login-reg-logout.component.css']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
 })
-export class LoginRegLogOutComponent implements OnInit {
-
-  public loggedInUserName?: string;
-  public loggedInUserSurname?: string;
+export class RegistrationComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private autenticService: AutenticacioService, public activeModal: NgbActiveModal, private router: Router, private route: ActivatedRoute) { }
 
   //* FORMS
-  loginForm: FormGroup = this.fb.group({
-    loginEmail: [null, [Validators.required, Validators.email]],
-    loginPassw: [null, [Validators.required, Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$")]]
-  });
-
   registreForm: FormGroup = this.fb.group({
     registreNom: [null, [Validators.required, Validators.minLength(2)]],
     registreCognom: [null, [Validators.required, Validators.minLength(2)]],
@@ -31,21 +23,6 @@ export class LoginRegLogOutComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.loggedInUserName = this.autenticService.usuariRegistrat.nom;
-    this.loggedInUserSurname = this.autenticService.usuariRegistrat.cognom;
-  }
-
-  //* MÈTODES 
-  login() {
-    let emailEntrat: string = this.loginForm.value.loginEmail;
-
-    this.autenticService.loginNOU(emailEntrat).subscribe(resp => {
-      if (resp) {
-        this.loggedInUserName = resp.nom ;
-        this.loggedInUserSurname = resp.cognom;
-        this.router.navigateByUrl('llista-naus');
-      }
-    });
   }
 
   registre() {
@@ -57,16 +34,18 @@ export class LoginRegLogOutComponent implements OnInit {
     }
 
     this.autenticService.registre(newUsuari);
+
+    this.autenticService.saberSiUsuariHaFetLogIn().subscribe(resp => {
+      if (resp == true) {
+        this.router.navigateByUrl('llista-naus').then(() => {
+          window.location.reload();
+        });
+      }
+    });
   }
 
   reset(form: FormGroup) {
     form.reset();
   }
 
-  logout() {
-    this.autenticService.esborrarCurrentSession_localStorage();
-    if (!this.autenticService.usuariRegistrat == null){
-    this.autenticService.usuariRegistrat.nom = "";}
-    this.loggedInUserName = "";
-  }
 }

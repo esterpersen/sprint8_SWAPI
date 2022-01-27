@@ -1,0 +1,30 @@
+.authBtn, .logout {
+  background-color: transparent;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: transparent;
+  border-bottom: 2px solid transparent;
+  color: lightgray;
+  font-family: "Sono-ExtraLight";
+  font-size: 19px;
+}
+
+.authBtn:hover, .logout:hover {
+  background-color: transparent;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: transparent;
+  border-bottom: 2px ridge rgba(0, 132, 255, 0.8);
+  background-color: transparent;
+  color: lightgray;
+}
+
+*{
+  text-align: center;
+}
+
+#helloUser{
+  color: #ffc108;
+  font-family: "Sono-Light";
+
+}

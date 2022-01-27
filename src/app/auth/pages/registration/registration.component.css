@@ -1,18 +1,21 @@
 * {
+  text-align: center;
   font-family: "Sono-Light";
 }
 
-.modal-content {
+.card {
+  margin-right: auto;
+  margin-left: auto;
   background-color: rgba(0, 0, 0, 0.68);
   color: lightgray;
   border: none;
 }
 
-.modal-header {
+.card-header {
   border-bottom: 1px solid #ffc108;
 }
 
-.modal-footer {
+.card-footer {
   justify-content: space-between;
   border-top: 1px solid #ffc108;
 }
@@ -56,25 +59,4 @@ a:hover {
 
 .alert-danger {
   padding: 5px;
-}
-
-.obrirModal, .logout{
-  background-color: transparent;
-  text-transform: uppercase;
-  border-radius: 0;
-  border: transparent;
-  border-bottom: 2px solid transparent;
-  color: lightgray;
-  font-family: "Sono-ExtraLight";
-  font-size: 19px;
-}
-
-.obrirModal:hover, .logout:hover {
-  background-color: transparent;
-  text-transform: uppercase;
-  border-radius: 0;
-  border: transparent;
-  border-bottom: 2px ridge rgba(0, 132, 255, 0.8);
-  background-color: transparent;
-  color: lightgray;
 }

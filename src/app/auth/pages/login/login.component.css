@@ -1,0 +1,61 @@
+* {
+  font-family: "Sono-Light";
+}
+
+.card {
+  margin-right: auto;
+  margin-left: auto;
+  background-color: rgba(0, 0, 0, 0.68);
+  color: lightgray;
+  border: none;
+}
+
+.card-header {
+  border-bottom: 1px solid #ffc108;
+}
+
+.card-footer {
+  justify-content: space-between;
+  border-top: 1px solid #ffc108;
+}
+
+.actionBtn {
+  text-transform: uppercase;
+  border-radius: 0;
+  border: 2px transparent;
+  border-bottom: 2px transparent;
+}
+.actionBtn:hover {
+  text-transform: uppercase;
+  border-radius: 0;
+  border: transparent;
+  border: 2px transparent;
+  border-bottom: 2px ridge rgba(0, 132, 255, 0.8);
+  background-color: transparent;
+  color: lightgray;
+}
+
+input {
+  color: rgb(77, 76, 76);
+}
+
+a {
+  text-decoration: none;
+  color: #ffc108;
+}
+a:hover {
+  color: darkgoldenrod;
+}
+
+.alert div {
+  background-color: #fed3d3;
+  color: #820000;
+  font-weight: 300;
+  padding: 1px;
+  margin-bottom: 2px;
+  font-size: 14px;
+}
+
+.alert-danger {
+  padding: 5px;
+}
